@@ -17,9 +17,14 @@ public class NewBeeMallIndexConfigServiceImpl implements NewBeeMallIndexConfigSe
     private IndexConfigMapper indexConfigMapper;
 	
 	@Override
-	public List<IndexConfig> getConfigGoodsesForIndex(int configType,int number) {
-		
-		return indexConfigMapper.findIndexConfigsByTypeAndNum(configType, number);
-	}
 
+	
+    public List<IndexConfig> getConfigGoodsesForIndex(int configType,int number) {
+		
+		return indexConfigMapper.findIndexConfigsByTypeAndNum(configType,number);
+	}
+	
+	
+	
+	
 }

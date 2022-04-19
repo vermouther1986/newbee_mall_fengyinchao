@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ltd.newbee.mail.newbeemail.dao.IndexConfigMapper">
+<mapper
+	namespace="ltd.newbee.mail.newbeemail.dao.IndexConfigMapper">
 	<resultMap id="BaseResultMap"
 		type="ltd.newbee.mail.newbeemail.entity.IndexConfig">
 		<id column="config_id" jdbcType="BIGINT" property="configId" />
@@ -25,15 +26,23 @@
 			property="updateUser" />
 	</resultMap>
 
+	
+
+
+
 	<select id="findIndexConfigsByTypeAndNum"
-		resultMap="BaseResultMap">
-		select
-		config_id, config_name, config_type, goods_id, redirect_url, config_rank,
-		is_deleted,
-		create_time, create_user, update_time, update_user
-		from tb_newbee_mall_index_config
-		where config_type = #{configType} and is_deleted = 0
-		order by config_rank desc
-		limit #{number}
+		resultType="BaseResultMap">
+		<where>
+			select*from newbee_mall_db.tb_newbee_mall_goods_info
+			where goods_id in(goods_id) order by field
+			<foreach collection="list" index="index" item="item" open="("
+				separator="," close=")">
+				#{goods_id}
+			</foreach>
+
+
+
+		</where>
 	</select>
+
 </mapper>
