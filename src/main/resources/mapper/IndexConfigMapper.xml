@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="ltd.newbee.mail.newbeemail.dao.IndexConfigMapper">
+<mapper namespace="ltd.newbee.mail.newbeemail.dao.IndexConfigMapper">
 	<resultMap id="BaseResultMap"
 		type="ltd.newbee.mail.newbeemail.entity.IndexConfig">
 		<id column="config_id" jdbcType="BIGINT" property="configId" />
@@ -25,42 +24,51 @@
 		<result column="update_user" jdbcType="INTEGER"
 			property="updateUser" />
 	</resultMap>
+	
+	<resultMap id="GoodsInfoBaseResultMap" type="ltd.newbee.mail.newbeemail.entity.NewBeeMallGoods">
+         <id column="goods_id" jdbcType="BIGINT" property="goodsId"/>
+         <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+         <result column="goods_intro" jdbcType="VARCHAR" property="goodsIntro"/>
+         <result column="goods_category_id" jdbcType="BIGINT" property="goodsCategoryId"/>
+         <result column="goods_cover_img" jdbcType="VARCHAR" property="goodsCoverImg"/>
+         <result column="goods_carousel" jdbcType="VARCHAR" property="goodsCarousel"/>
+         <result column="original_price" jdbcType="INTEGER" property="originalPrice"/>
+         <result column="selling_price" jdbcType="INTEGER" property="sellingPrice"/>
+         <result column="stock_num" jdbcType="INTEGER" property="stockNum"/>
+         <result column="tag" jdbcType="VARCHAR" property="tag"/>
+         <result column="goods_sell_status" jdbcType="TINYINT" property="goodsSellStatus"/>
+         <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+         <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+     </resultMap>
+	
 
 	<select id="findIndexConfigsByTypeAndNum"
 		resultMap="BaseResultMap">
 		select
-		config_id, config_name, config_type, goods_id,
-		redirect_url,
-		config_rank,
+		config_id, config_name, config_type, goods_id, redirect_url, config_rank,
 		is_deleted,
-		create_time, create_user,
-		update_time,
-		update_user
+		create_time, create_user, update_time, update_user
 		from tb_newbee_mall_index_config
-		where
-		config_type =
-		#{configType} and is_deleted = 0
+		where config_type = #{configType} and is_deleted = 0
 		order by config_rank desc
-		limit
-		#{number}
+		limit #{number}
 	</select>
-
-
-
-
+	
+	
 	<select id="findIndexConfigsByGoodId"
-		resultType="GoodsIdMap">
-			select*from tb_newbee_mall_goods_info
+		resultMap="GoodsInfoBaseResultMap">
+		select * from tb_newbee_mall_goods_info
 		<where>
-			
+		    <foreach item="item" index="index" collection="list" open="goods_id  in (" separator="," close=")">
+		          #{item}
+		    </foreach>
+	  	</where>
+	  	order by 
+	  	<foreach item="item" index="index" collection="list" open="field (goods_id ," separator="," close=")">
+		          #{item}
+		</foreach>
 		
-			 <foreach item="item" index="index" collection="list" open="goods_id  in (" separator="," close=")">
-				#{goods_id}
-			</foreach>
-
-
-
-		</where>
 	</select>
-
 </mapper>
