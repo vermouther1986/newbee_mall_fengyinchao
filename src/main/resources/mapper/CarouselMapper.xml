@@ -5,7 +5,7 @@
 		type="ltd.newbee.mail.newbeemail.entity.Carousel">
 		<id column=" carousel_id" jdbcType="BIGINT" property="carouselId" />
 		<result column="carousel_url" jdbcType="TINYINT"
-			property="categoryLevel" />
+			property="carouselUrl" />
 		<result column=" redirect_url," jdbcType="BIGINT"
 			property="carouselUrl" />
 		<result column="redirect_url, " jdbcType="VARCHAR"
