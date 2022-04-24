@@ -30,7 +30,7 @@
 
 	<select id="findUserByIdCount"  parameterType="long" resultType="int">
 
-		SELECT count(*) tb_newbee_mall_user where user_id=#{userid};
+		SELECT count(*) FROM tb_newbee_mall_user where user_id=#{userid};
 
 	</select>
 

@@ -26,7 +26,7 @@
 		SELECT f.* from rescent_check_goods join
 		tb_newbee_mall_goods_info as f on
 		f.goods_id=
-		rescent_check_goods.goods_id where user_id=#{userid}
+		rescent_check_goods.goods_id where user_id = #{userid}
 		group by
 		goods_id,user_id order by
 		count(check_date) desc limit #{list}

@@ -28,6 +28,10 @@ public class CheckdateServicempl implements CheckdateService {
 			NewBeeMallGoodsDetailVO vo = new NewBeeMallGoodsDetailVO();
 			vo.setGoodsId(entity.getGoodsId());
 			vo.setGoodsName(entity.getGoodsName());
+			vo.setOriginalPrice(entity.getOriginalPrice());
+			vo.setGoodsIntro(entity.getGoodsIntro());
+			vo.setSellingPrice(entity.getSellingPrice());
+			vo.setGoodsDetailContent(entity.getGoodsDetailContent());
 			volist.add(vo);
 
 		}
