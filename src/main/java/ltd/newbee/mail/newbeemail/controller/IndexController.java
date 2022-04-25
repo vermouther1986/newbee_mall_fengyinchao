@@ -1,16 +1,23 @@
 package ltd.newbee.mail.newbeemail.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ltd.newbee.mail.newbeemail.dao.RunRecommendApiHistoryMapper;
+import ltd.newbee.mail.newbeemail.entity.RunRecommendApiHistory;
 import ltd.newbee.mail.newbeemail.service.CheckUserExistsService;
 import ltd.newbee.mail.newbeemail.service.CheckdateService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallCarouselService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallCategoryService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallIndexConfigService;
+import ltd.newbee.mail.newbeemail.service.ProductFormulaService;
+import ltd.newbee.mail.newbeemail.service.RunRecommendApiHistoryService;
 import ltd.newbee.mail.newbeemail.util.Result;
 import ltd.newbee.mail.newbeemail.util.ResultGenerator;
 
@@ -31,6 +38,10 @@ public class IndexController {
 
 	@Resource
 	private CheckdateService checkdateService;
+	@Resource
+	private RunRecommendApiHistoryService runRecommendApiHistoryService;
+	@Resource
+	private ProductFormulaService  productFormulaService;
 
 	@GetMapping("/goodses")
 	@ResponseBody
@@ -67,6 +78,33 @@ public class IndexController {
 			return ResultGenerator.genSuccessResult(checkdateService.getCheckDateForIndex(userid, 5));
 		}
 
+	}
+	@GetMapping("/recomend")
+	@ResponseBody
+	public Result recomend() {
+		List<RunRecommendApiHistory> list= runRecommendApiHistoryService.getCategoryId();
+		for(RunRecommendApiHistory run: list) {
+			run.setRunDate(new Date());
+			
+		}
+		int count = runRecommendApiHistoryService.insertRecommendApiHistory(list);
+	
+		if (count == 0) {
+
+			return ResultGenerator.genFailResult("failed");
+		} else {
+
+			// return ResultGenerator.genSuccessResult("success");
+			return ResultGenerator.genSuccessResult("success");
+		}
+
+	}
+
+	@GetMapping("/formula")
+	@ResponseBody
+	public Result formulal(long goodsId) {
+
+		return ResultGenerator.genSuccessResult(productFormulaService.getProductFormulaForIndex(goodsId));
 	}
 
 }

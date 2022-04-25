@@ -5,5 +5,6 @@ import java.util.List;
 import ltd.newbee.mail.newbeemail.entity.RunRecommendApiHistory;
 
 public interface RunRecommendApiHistoryMapper {
-	int insertRecommendApiHistory(List<RunRecommendApiHistory> list);
+	int insertRunRecommendApiHistory(List<RunRecommendApiHistory> list);
+	List<RunRecommendApiHistory> getCategoryId();
 }

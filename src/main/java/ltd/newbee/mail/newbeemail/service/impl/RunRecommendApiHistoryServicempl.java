@@ -1,7 +1,5 @@
 package ltd.newbee.mail.newbeemail.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,15 +12,16 @@ import ltd.newbee.mail.newbeemail.service.RunRecommendApiHistoryService;
 @Service
 public class RunRecommendApiHistoryServicempl implements RunRecommendApiHistoryService {
 	@Resource
-	RunRecommendApiHistoryMapper runRecommendApiHistoryMapper;;
+	RunRecommendApiHistoryMapper runRecommendApiHistoryMapper;
 	@Override
-	public int insertRecommendApiHistory() {
-		List<RunRecommendApiHistory> list = new  ArrayList<RunRecommendApiHistory>();
-		RunRecommendApiHistory h1 = new RunRecommendApiHistory();
-		h1.setGoodsId(10003l);
-		h1.setRunDate(new Date());
-		list.add(h1);
-		return runRecommendApiHistoryMapper.insertRecommendApiHistory(list);
+	public int insertRecommendApiHistory(List<RunRecommendApiHistory> list) {
+	
+		return runRecommendApiHistoryMapper.insertRunRecommendApiHistory(list);
+	}
+	@Override
+	public  List<RunRecommendApiHistory> getCategoryId(){
+	
+		return runRecommendApiHistoryMapper.getCategoryId();
 	}
 
 }

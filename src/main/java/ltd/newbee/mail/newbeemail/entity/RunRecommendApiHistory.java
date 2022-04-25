@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class RunRecommendApiHistory {
 	private long goodsId;
+	private long userId;
 
 	public long getGoodsId() {
 		return goodsId;
@@ -17,6 +18,14 @@ public class RunRecommendApiHistory {
 
 	public Date getRunDate() {
 		return runDate;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	public void setRunDate(Date runDate) {
@@ -36,6 +45,5 @@ public class RunRecommendApiHistory {
 		builder.append("]");
 		return builder.toString();
 	}
-
 
 }

@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
-	namespace="ltd.newbee.mail.newbeemail.dao.RunRecommendApiHistoryMapper">
-	
-	
-	<insert id="insertRecommendApiHistory">
-	
-	
-	insert into run_recommend_api_history(goods_id, run_date)
-	value
-	<foreach item="item" collection="list" separator=",">
-	    	(#{item.goodsId}, #{item.runDate})
-	 	 </foreach>
-	</insert>
-	
-	
-	
-	
-	
-	</mapper> 
+    namespace="ltd.newbee.mail.newbeemail.dao.RunRecommendApiHistoryMapper">
+
+    <insert id="insertRunRecommendApiHistory">
+        insert into run_recommend_api_history (category_id,user_id,run_date) values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.categoryId},#{item.userId}, #{item.runDate})
+        </foreach>
+    </insert>
+
+    <!-- 1.不是一定要返回entity,如果是list<long>的话 可以指定long
+    2.也不是一定要有parameterType -->
+    <select id="getCategoryId" resultType="ltd.newbee.mail.newbeemail.entity.RunRecommendApiHistory">
+        select distinct chk.user_id, cat2.category_id 
+        from tb_newbee_mall_goods_info as info1 
+        join tb_newbee_mall_goods_info as info2 
+        on info2.goods_category_id = info1.goods_category_id
+        join rescent_check_goods as chk
+        on chk.goods_id = info2.goods_id
+        join tb_newbee_mall_goods_category as cat2
+        on info1.goods_category_id = cat2.category_id
+        left join run_recommend_api_history as hi
+        on cat2.category_id = hi.category_id
+        where hi.category_id is null
+    </select>
+
+</mapper>
