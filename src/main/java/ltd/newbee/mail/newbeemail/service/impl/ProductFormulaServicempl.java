@@ -27,13 +27,46 @@ class ProductFormulaServicempl implements ProductFormulaService {
 			vo.setGoodsId(list.getGoodsId());
 			vo.setColor(list.getColor());
 			vo.setMaterial(list.getMaterail());
-			vo.setSize(list.getSize1Name() + list.getSize1() + list.getSize2Name() + list.getSize2()
-					+ list.getSize3Name() + list.getSize3() + list.getSizeUnit());
-			vo.setWaapSize(list.getWrapSize1Name() + list.getWarpSize1() + list.getWrapSize2Name() + list.getWarpSize3()
-					+ list.getWrapSize3Name() + list.getWarpSize3() + list.getWarpSize3());
-			vo.setWarrantyYears(list.getWarrantyYears());
-			vo.setWaapSize(list.getWrapSize1Name() + list.getWarpSize1() + list.getWrapSize2Name() + list.getWarpSize2()
-					+ list.getWrapSize3Name() + list.getWarpSize3() + list.getWrapSizeUnit());
+			String s = "";
+			String w="";
+
+			if (list.getSize1() != 0) {
+				s = s + list.getSize1() + list.getSize1Name();
+
+			}
+			if (list.getSize2() != 0) {
+				s = s + list.getSize2() + list.getSize2Name();
+
+			}
+			if (list.getSize3() != 0) {
+				s = s + list.getSize3() + list.getSize3Name();
+
+			}
+			if (list.getSizeUnit() != null && list.getSizeUnit().equals("")) {
+				s = s + list.getSizeUnit();
+
+			}
+
+			if (list.getWarpSize1() != 0) {
+				w = w + list.getWarpSize1() + list.getWrapSize1Name();
+
+			}
+			if (list.getWarpSize2() != 0) {
+			w= w+ list.getWarpSize2() + list.getWrapSize2Name();
+
+			}
+			if (list.getWarpSize3() != 0) {
+				w= w+ list.getWarpSize3() + list.getWrapSize3Name();
+
+			}
+			if (list.getWrapSizeUnit() != null && list.getWrapSizeUnit().equals("")) {
+				w = w + list.getWrapSizeUnit();
+
+			}
+			vo.setSize(s);
+			vo.setWrapSize(w);
+			vo.setWarrantyYears(list.getWarranty() + list.getWarrantyUnit());
+
 			volist.add(vo);
 		}
 

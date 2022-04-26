@@ -4,78 +4,37 @@ public class ProductFormula {
 
 	private long goodsId;
 
-    private String color;
-    
+	private String color;
+
 	private double size1;
 
-    private double size2;
+	private double size2;
 	private double size3;
+	private String warrantyUnit;
 
-    
 	private double size4;
-    private double size5;
-    private String materail;
-    private double warpSize1;
-    private double warpSize2;
-    private double warpSize3;
-    private double warpSize4;
-    private String warrantyYears;
-    @Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ProductFormula [goodsId=");
-		builder.append(goodsId);
-		builder.append(", color=");
-		builder.append(color);
-		builder.append(", size1=");
-		builder.append(size1);
-		builder.append(", size2=");
-		builder.append(size2);
-		builder.append(", size3=");
-		builder.append(size3);
-		builder.append(", size4=");
-		builder.append(size4);
-		builder.append(", size5=");
-		builder.append(size5);
-		builder.append(", materail=");
-		builder.append(materail);
-		builder.append(", warpSize1=");
-		builder.append(warpSize1);
-		builder.append(", warpSize2=");
-		builder.append(warpSize2);
-		builder.append(", warpSize3=");
-		builder.append(warpSize3);
-		builder.append(", warpSize4=");
-		builder.append(warpSize4);
-		builder.append(", warrantyYears=");
-		builder.append(warrantyYears);
-		builder.append(", size1Name=");
-		builder.append(size1Name);
-		builder.append(", size2Name=");
-		builder.append(size2Name);
-		builder.append(", size3Name=");
-		builder.append(size3Name);
-		builder.append(", size4Name=");
-		builder.append(size4Name);
-		builder.append(", size5Name=");
-		builder.append(size5Name);
-		builder.append(", wrapSize1Name=");
-		builder.append(wrapSize1Name);
-		builder.append(", wrapSize2Name=");
-		builder.append(wrapSize2Name);
-		builder.append(", wrapSize3Name=");
-		builder.append(wrapSize3Name);
-		builder.append(", wrapSize4Name=");
-		builder.append(wrapSize4Name);
-		builder.append(", wrapSize5Name=");
-		builder.append(wrapSize5Name);
-		builder.append(", sizeUnit=");
-		builder.append(sizeUnit);
-		builder.append(", wrapSizeUnit=");
-		builder.append(wrapSizeUnit);
-		builder.append("]");
-		return builder.toString();
-	}
+	private double size5;
+	private String materail;
+	private double warpSize1;
+	private double warpSize2;
+	private double warpSize3;
+	private double warpSize4;
+	private String warrantyYears;
+
+	private String size1Name;
+	
+	private String size2Name;
+	private String size3Name;
+	private String size4Name;
+	private String size5Name;
+	private String wrapSize1Name;
+	private String wrapSize2Name;
+	private String wrapSize3Name;
+	private String wrapSize4Name;
+	private String wrapSize5Name;
+	private String sizeUnit;
+	private String wrapSizeUnit;
+	private int warranty;
 	public long getGoodsId() {
 		return goodsId;
 	}
@@ -105,6 +64,12 @@ public class ProductFormula {
 	}
 	public void setSize3(double size3) {
 		this.size3 = size3;
+	}
+	public String getWarrantyUnit() {
+		return warrantyUnit;
+	}
+	public void setWarrantyUnit(String warrantyUnit) {
+		this.warrantyUnit = warrantyUnit;
 	}
 	public double getSize4() {
 		return size4;
@@ -226,16 +191,10 @@ public class ProductFormula {
 	public void setWrapSizeUnit(String wrapSizeUnit) {
 		this.wrapSizeUnit = wrapSizeUnit;
 	}
-	private String size1Name;
-    private String size2Name;
-    private String size3Name;
-    private String size4Name;
-    private String size5Name;
-    private String wrapSize1Name;
-    private String wrapSize2Name;
-    private String wrapSize3Name;
-    private String wrapSize4Name;
-    private String wrapSize5Name;
-    private String sizeUnit;
-    private String wrapSizeUnit;
+	public int getWarranty() {
+		return warranty;
+	}
+	public void setWarranty(int warranty) {
+		this.warranty = warranty;
+	}
 }

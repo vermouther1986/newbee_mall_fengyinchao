@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ltd.newbee.mail.newbeemail.dao.RunRecommendApiHistoryMapper;
 import ltd.newbee.mail.newbeemail.entity.RunRecommendApiHistory;
+import ltd.newbee.mail.newbeemail.service.AllGoodsInformationService;
 import ltd.newbee.mail.newbeemail.service.CheckUserExistsService;
 import ltd.newbee.mail.newbeemail.service.CheckdateService;
+import ltd.newbee.mail.newbeemail.service.GoodsImageService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallCarouselService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallCategoryService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallIndexConfigService;
@@ -42,6 +44,10 @@ public class IndexController {
 	private RunRecommendApiHistoryService runRecommendApiHistoryService;
 	@Resource
 	private ProductFormulaService  productFormulaService;
+	@Resource
+	private GoodsImageService  goodsImageService;
+	@Resource
+	private AllGoodsInformationService  allGoodsInformationService;
 
 	@GetMapping("/goodses")
 	@ResponseBody
@@ -105,6 +111,18 @@ public class IndexController {
 	public Result formulal(long goodsId) {
 
 		return ResultGenerator.genSuccessResult(productFormulaService.getProductFormulaForIndex(goodsId));
+	}
+	@GetMapping("/goodsimage")
+	@ResponseBody
+	public Result goodsimage(long goodsId) {
+
+		return ResultGenerator.genSuccessResult(goodsImageService.getGoodsImage(goodsId));
+	}
+	@GetMapping("/allgoods")
+	@ResponseBody
+	public Result allgoods(long goodsId) {
+
+		return ResultGenerator.genSuccessResult(allGoodsInformationService.getAllGoodsInformationForIndex(goodsId));
 	}
 
 }

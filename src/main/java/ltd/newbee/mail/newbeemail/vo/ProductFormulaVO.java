@@ -8,7 +8,7 @@ public class ProductFormulaVO implements Serializable{
 	private String color;
 	private String size;
 	private String material;
-	private String waapSize;
+	private String wrapSize;
 	private String warrantyYears;
 	public Long getGoodsId() {
 		return goodsId;
@@ -34,17 +34,35 @@ public class ProductFormulaVO implements Serializable{
 	public void setMaterial(String material) {
 		this.material = material;
 	}
-	public String getWaapSize() {
-		return waapSize;
+	public String getWrapSize() {
+		return wrapSize;
 	}
-	public void setWaapSize(String waapSize) {
-		this.waapSize = waapSize;
+	public void setWrapSize(String wrapSize) {
+		this.wrapSize = wrapSize;
 	}
 	public String getWarrantyYears() {
 		return warrantyYears;
 	}
 	public void setWarrantyYears(String warrantyYears) {
 		this.warrantyYears = warrantyYears;
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ProductFormulaVO [goodsId=");
+		builder.append(goodsId);
+		builder.append(", color=");
+		builder.append(color);
+		builder.append(", size=");
+		builder.append(size);
+		builder.append(", material=");
+		builder.append(material);
+		builder.append(", wrapSize=");
+		builder.append(wrapSize);
+		builder.append(", warrantyYears=");
+		builder.append(warrantyYears);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	
