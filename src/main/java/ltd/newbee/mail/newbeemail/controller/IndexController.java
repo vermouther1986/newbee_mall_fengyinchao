@@ -19,6 +19,7 @@ import ltd.newbee.mail.newbeemail.service.NewBeeMallCarouselService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallCategoryService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallIndexConfigService;
 import ltd.newbee.mail.newbeemail.service.ProductFormulaService;
+import ltd.newbee.mail.newbeemail.service.QuestionsAndAnswerService;
 import ltd.newbee.mail.newbeemail.service.RunRecommendApiHistoryService;
 import ltd.newbee.mail.newbeemail.util.Result;
 import ltd.newbee.mail.newbeemail.util.ResultGenerator;
@@ -48,6 +49,9 @@ public class IndexController {
 	private GoodsImageService  goodsImageService;
 	@Resource
 	private AllGoodsInformationService  allGoodsInformationService;
+	@Resource
+	private QuestionsAndAnswerService questionsAndAnswerService;
+
 
 	@GetMapping("/goodses")
 	@ResponseBody
@@ -124,5 +128,14 @@ public class IndexController {
 
 		return ResultGenerator.genSuccessResult(allGoodsInformationService.getAllGoodsInformationForIndex(goodsId));
 	}
-
+	@GetMapping("/question")
+	@ResponseBody
+	public Result question(long goodsId,int page,int number) {
+		
+		return ResultGenerator.genSuccessResult(questionsAndAnswerService.getQuestionsAndAnswerForIndex(goodsId,page,3));
+	}
+    public Result question() {
+		
+		return ResultGenerator.genSuccessResult(questionsAndAnswerService.getQuestionsPageAndTotoForIndex());
+	}
 }
