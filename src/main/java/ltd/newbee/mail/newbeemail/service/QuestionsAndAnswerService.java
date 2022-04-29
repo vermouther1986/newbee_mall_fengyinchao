@@ -9,10 +9,10 @@ public interface QuestionsAndAnswerService {
 
 	
 	
-	List<QuestionsAndAnswerVO>  getQuestionsAndAnswerForIndex(long goodsId,int page,int number);
+	List<QuestionsAndAnswerVO>  getQuestionsAndAnswerForIndex(long goodsId,int page,int number,String orderBy );
 
-	;
 	
-	List<QuestionsAndAnswerVO> getQuestionsPageAndTotoForIndex( );
+	
+	
 	
 }

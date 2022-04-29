@@ -1,31 +1,95 @@
 package ltd.newbee.mail.newbeemail.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
 public class QuestionsAndAnswerVO {
-	
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108134+09:00", comments="Source field: qa_like.user_id")
+	private List<CurrentPageVO > CurrentPageVO;
+    public List<CurrentPageVO> getCurrentPage() {
+		return CurrentPageVO;
+	}
+
+
+
+
+
+	public void setCurrentPage(List<CurrentPageVO> currentPage) {
+		CurrentPageVO = currentPage;
+	}
+	@Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108134+09:00", comments="Source field: qa_like.user_id")
     private Long userId;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108181+09:00", comments="Source field: qa_like.like_date")
     private Date likeDate;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108134+09:00", comments="Source field: qa_like.user_id")
-    private Long totalCount;
+    private int totalCount;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108181+09:00", comments="Source field: qa_like.like_date")
-    private Date totalpage;
+    private int totalpage;
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108181+09:00", comments="Source field: qa_like.like_date")
-    private Date  currentpage;
+    private int currentpage;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108151+09:00", comments="Source field: qa_like.user_id")
     public Long getUserId() {
         return userId;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108168+09:00", comments="Source field: qa_like.user_id")
+   
+
+	
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+
+
+
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
+
+
+
+
+	public int getTotalpage() {
+		return totalpage;
+	}
+
+
+
+
+
+	public void setTotalpage(int totalpage) {
+		this.totalpage = totalpage;
+	}
+
+
+
+
+
+	public int getCurrentpage() {
+		return currentpage;
+	}
+
+
+
+
+
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
+	}
+
+
+
+
+
+	@Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108168+09:00", comments="Source field: qa_like.user_id")
     public void setUserId(Long userId) {
         this.userId = userId;
     }
@@ -160,6 +224,15 @@ public class QuestionsAndAnswerVO {
     public void setAnswerContents(String answerContents) {
         this.answerContents = answerContents == null ? null : answerContents.trim();
     }
+
+
+
+
+
+	public void setCurrentPage(int currentpage2, int totalpage2, int count) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	 

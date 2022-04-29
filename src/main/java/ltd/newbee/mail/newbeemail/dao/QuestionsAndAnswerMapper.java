@@ -6,10 +6,11 @@ import ltd.newbee.mail.newbeemail.entity.QuestionsAndAnswer;
 
 public interface QuestionsAndAnswerMapper {
 
-	List<QuestionsAndAnswer>  getQuestionsAndAnswer(long goodsId,int page,int number);
+	List<QuestionsAndAnswer>  getQuestionsAndAnswer(long goodsId,int page,int number,String orderBy);
 	
-	List<QuestionsAndAnswer> getQuestionsPageAndTotol( );
+	int getQuestionsTotol(long goodsId );
 
+	
 
 	
 	

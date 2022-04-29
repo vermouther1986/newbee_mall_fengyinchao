@@ -9,31 +9,37 @@
 		resultType="ltd.newbee.mail.newbeemail.entity.QuestionsAndAnswer">
 
 		SELECT
-		ans.goods_id,question_contents,question_date,answer_date,answer_contents,
-		count(good.user_id) FROM questions as que join
+		ans.goods_id,question_contents,question_date,answer_date
+		,answer_contents,
+		count(good.user_id) as total FROM questions as que
+		join
 		answers as ans
 		on
-		que.question_id= ans.question_id left join qa_like as
+		que.question_id= ans.question_id left join qa_like
+		as
 		good on
 		good.answer_id=
-		ans.answer_id where que.goods_id = 10003 group by
+		ans.answer_id where que.goods_id = #{goodsId}
+		group by
 		good.answer_id order by
-		count(good.user_id) DESC,answer_date DESC
-		limit =#{(page-1)*number+1,number}
+		count(good.user_id) DESC ,answer_date
+		DESC
+		order by ${orderBy} DESC
+		limit
+		#{page},#{number}
 
 
 	</select>
-	<select id="getQuestionsPageAndTotol"
-		resultType="ltd.newbee.mail.newbeemail.entity.QuestionsAndAnswer">
+	<select id="getQuestionsTotol" resultType="int">
 
 		SELECT
-		ans.goods_id,question_contents,question_date,answer_date,answer_contents,
-		count(*) as totalCount,(count(*)%3) as totalpage, (count(*)%3)>=0 as
-		currentpage
+		count(*) as
+		totalCount
 		FROM questions as que join
 		answers as ans
 		on que.question_id=
-		ans.question_id where que.goods_id = 10003 and proved=0
+		ans.question_id where que.goods_id = #{goodsId} and proved=0
+
 
 
 	</select>

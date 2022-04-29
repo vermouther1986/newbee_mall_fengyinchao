@@ -20,6 +20,7 @@ import ltd.newbee.mail.newbeemail.service.NewBeeMallCategoryService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallIndexConfigService;
 import ltd.newbee.mail.newbeemail.service.ProductFormulaService;
 import ltd.newbee.mail.newbeemail.service.QuestionsAndAnswerService;
+import ltd.newbee.mail.newbeemail.service.ReviewMapperService;
 import ltd.newbee.mail.newbeemail.service.RunRecommendApiHistoryService;
 import ltd.newbee.mail.newbeemail.util.Result;
 import ltd.newbee.mail.newbeemail.util.ResultGenerator;
@@ -51,7 +52,8 @@ public class IndexController {
 	private AllGoodsInformationService  allGoodsInformationService;
 	@Resource
 	private QuestionsAndAnswerService questionsAndAnswerService;
-
+	@Resource
+	private ReviewMapperService  reviewMapperService ;
 
 	@GetMapping("/goodses")
 	@ResponseBody
@@ -130,12 +132,15 @@ public class IndexController {
 	}
 	@GetMapping("/question")
 	@ResponseBody
-	public Result question(long goodsId,int page,int number) {
+	public Result question(long goodsId,int page,int number,String orderBy ) {
 		
-		return ResultGenerator.genSuccessResult(questionsAndAnswerService.getQuestionsAndAnswerForIndex(goodsId,page,3));
+		return ResultGenerator.genSuccessResult(questionsAndAnswerService.getQuestionsAndAnswerForIndex(goodsId,page,3,orderBy ));
 	}
-    public Result question() {
+	@GetMapping("/review")
+	@ResponseBody
+	public Result review(int goodsId) {
 		
-		return ResultGenerator.genSuccessResult(questionsAndAnswerService.getQuestionsPageAndTotoForIndex());
+		return ResultGenerator.genSuccessResult(reviewMapperService.getReviewForIndex(goodsId));
 	}
+	
 }

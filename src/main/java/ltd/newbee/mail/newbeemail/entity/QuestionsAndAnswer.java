@@ -12,13 +12,7 @@ public class QuestionsAndAnswer {
 	    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108181+09:00", comments="Source field: qa_like.like_date")
 	    private Date likeDate;
 
-	    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108134+09:00", comments="Source field: qa_like.user_id")
-	    private Long totalCount;
-
-	    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108181+09:00", comments="Source field: qa_like.like_date")
-	    private Date totalpage;
-        @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108181+09:00", comments="Source field: qa_like.like_date")
-        private Date  currentpage;
+	   
 	
 	    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:26:37.108151+09:00", comments="Source field: qa_like.user_id")
 	    public Long getUserId() {
@@ -61,7 +55,8 @@ public class QuestionsAndAnswer {
 	        return questionId;
 	    }
 
-	    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:19:08.681309+09:00", comments="Source field: questions.question_id")
+	   
+		@Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-27T11:19:08.681309+09:00", comments="Source field: questions.question_id")
 	    public void setQuestionId(Long questionId) {
 	        this.questionId = questionId;
 	    }
