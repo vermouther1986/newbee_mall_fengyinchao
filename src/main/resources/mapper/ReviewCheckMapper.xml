@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="ltd.newbee.mail.newbeemail.dao.ReviewCheckMapper">
+	<insert id="insertReviewApiCheck">
+		insert into Review_api_check(goods_id,user_id,order_id)
+		values
+		<foreach item="item" collection="list" separator=",">
+			(#{item.goodsId},#{item.userId}, #{item.orderId})
+		</foreach>
+	</insert>
+	<select id="getReviewCheck"
+		resultType="ltd.newbee.mail.newbeemail.entity.ReviewApiCheck">
+		SELECT rev.order_id,item.goods_id,ord.user_id FROM
+		newbee_mall_db.tb_newbee_mall_order_item as item left join review as
+		rev on rev.order_id=item .order_id and rev.goods_id=item.goods_id left
+		join tb_newbee_mall_order
+		as ord on item.order_id=ord.order_id where
+		rev.order_id is null and
+		item.goods_id
+		=#{goodsId} and user_id=#{userId}
+	</select>
+</mapper>

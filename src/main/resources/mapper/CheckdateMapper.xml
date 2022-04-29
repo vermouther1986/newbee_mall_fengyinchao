@@ -2,26 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="ltd.newbee.mail.newbeemail.dao.CheckdateMapper">
-	<resultMap id="BaseResultMap"
-		type="ltd.newbee.mail.newbeemail.entity.NewBeeMallGoods">
-		<id column="goods_id" jdbcType="BIGINT" property="goodsId"/>
-         <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
-         <result column="goods_intro" jdbcType="VARCHAR" property="goodsIntro"/>
-         <result column="goods_category_id" jdbcType="BIGINT" property="goodsCategoryId"/>
-         <result column="goods_cover_img" jdbcType="VARCHAR" property="goodsCoverImg"/>
-         <result column="goods_carousel" jdbcType="VARCHAR" property="goodsCarousel"/>
-         <result column="original_price" jdbcType="INTEGER" property="originalPrice"/>
-         <result column="selling_price" jdbcType="INTEGER" property="sellingPrice"/>
-         <result column="stock_num" jdbcType="INTEGER" property="stockNum"/>
-         <result column="tag" jdbcType="VARCHAR" property="tag"/>
-         <result column="goods_sell_status" jdbcType="TINYINT" property="goodsSellStatus"/>
-         <result column="create_user" jdbcType="INTEGER" property="createUser"/>
-         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-         <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
-         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
-	</resultMap>
-	<select id="findIndexCheckDateByUserId" 
-		resultMap="BaseResultMap">
+
+
+
+	<select id="findIndexCheckDateByUserId"
+		resultType="ltd.newbee.mail.newbeemail.entity.NewBeeMallGoods">
 
 		SELECT f.* from rescent_check_goods join
 		tb_newbee_mall_goods_info as f on
@@ -33,6 +18,9 @@
 
 
 
+
+
 	</select>
 
-</mapper> 
+
+</mapper>

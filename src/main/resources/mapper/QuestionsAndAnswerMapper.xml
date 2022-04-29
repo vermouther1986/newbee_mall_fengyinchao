@@ -21,9 +21,7 @@
 		good.answer_id=
 		ans.answer_id where que.goods_id = #{goodsId}
 		group by
-		good.answer_id order by
-		count(good.user_id) DESC ,answer_date
-		DESC
+		good.answer_id
 		order by ${orderBy} DESC
 		limit
 		#{page},#{number}

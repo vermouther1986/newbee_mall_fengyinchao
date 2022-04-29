@@ -1,5 +1,6 @@
 package ltd.newbee.mail.newbeemail.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ltd.newbee.mail.newbeemail.dao.RunRecommendApiHistoryMapper;
+import ltd.newbee.mail.newbeemail.entity.ReviewApiCheck;
 import ltd.newbee.mail.newbeemail.entity.RunRecommendApiHistory;
 import ltd.newbee.mail.newbeemail.service.AllGoodsInformationService;
 import ltd.newbee.mail.newbeemail.service.CheckUserExistsService;
@@ -20,6 +22,7 @@ import ltd.newbee.mail.newbeemail.service.NewBeeMallCategoryService;
 import ltd.newbee.mail.newbeemail.service.NewBeeMallIndexConfigService;
 import ltd.newbee.mail.newbeemail.service.ProductFormulaService;
 import ltd.newbee.mail.newbeemail.service.QuestionsAndAnswerService;
+import ltd.newbee.mail.newbeemail.service.ReviewCheckService;
 import ltd.newbee.mail.newbeemail.service.ReviewMapperService;
 import ltd.newbee.mail.newbeemail.service.RunRecommendApiHistoryService;
 import ltd.newbee.mail.newbeemail.util.Result;
@@ -54,6 +57,8 @@ public class IndexController {
 	private QuestionsAndAnswerService questionsAndAnswerService;
 	@Resource
 	private ReviewMapperService  reviewMapperService ;
+	@Resource
+	private ReviewCheckService reviewCheckService ;
 
 	@GetMapping("/goodses")
 	@ResponseBody
@@ -142,5 +147,20 @@ public class IndexController {
 		
 		return ResultGenerator.genSuccessResult(reviewMapperService.getReviewForIndex(goodsId));
 	}
-	
+	@GetMapping("/reviewcheck")
+	@ResponseBody
+	public Result reviewcheck(long goodsId,long userId) {
+	List<ReviewApiCheck> list=reviewCheckService.getReviewCheck(goodsId, userId);
+		long count=reviewCheckService.insertReviewApiCheck(list);
+		if(count==0) {
+			return ResultGenerator.genFailResult("noreview");
+			
+		}else {
+			
+			return ResultGenerator.genSuccessResult("可以写评语");
+			
+		}
+		
+		
+	}
 }
