@@ -18,10 +18,10 @@ public class ReviewMapperServicempl implements ReviewMapperService {
 	@Resource
 	private  ReviewMapper   reviewMapper ;
 
-	public List<ReviewVO> getReviewForIndex(int goodsId) {
+	public List<ReviewVO> getReviewForIndex(int goodsId,int rating ,int start,int number) {
 	
 		
-		List<Review> entityList = reviewMapper.getReview(goodsId);
+		List<Review> entityList = reviewMapper.getReview(goodsId,rating,start,number);
 		
 		
 		List<ReviewVO> volist=new ArrayList<ReviewVO>();

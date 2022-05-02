@@ -26,9 +26,10 @@ class ProductFormulaServicempl implements ProductFormulaService {
 			ProductFormulaVO vo = new ProductFormulaVO();
 			vo.setGoodsId(list.getGoodsId());
 			vo.setColor(list.getColor());
-			vo.setMaterial(list.getMaterail());
+			vo.setMaterial(list.getMaterial());
 			String s = "";
-			String w="";
+			String w = "";
+		
 
 			if (list.getSize1() != 0) {
 				s = s + list.getSize1() + list.getSize1Name();
@@ -46,26 +47,28 @@ class ProductFormulaServicempl implements ProductFormulaService {
 				s = s + list.getSizeUnit();
 
 			}
-
-			if (list.getWarpSize1() != 0) {
-				w = w + list.getWarpSize1() + list.getWrapSize1Name();
-
-			}
-			if (list.getWarpSize2() != 0) {
-			w= w+ list.getWarpSize2() + list.getWrapSize2Name();
+			if (list.getWrapSize1() != 0) {
+				w = list.getWrapSize1() + list.getWrapSize1Name();
 
 			}
-			if (list.getWarpSize3() != 0) {
-				w= w+ list.getWarpSize3() + list.getWrapSize3Name();
+			if (list.getWrapSize2() != 0) {
+				w = w+list.getWrapSize2() + list.getWrapSize2Name();
+
+			}
+			if (list.getWrapSize3() != 0) {
+				w =  w+list.getWrapSize3() + list.getWrapSize3Name();
 
 			}
 			if (list.getWrapSizeUnit() != null && list.getWrapSizeUnit().equals("")) {
-				w = w + list.getWrapSizeUnit();
+				w = w+ list.getSizeUnit();
 
 			}
+			
+
 			vo.setSize(s);
 			vo.setWrapSize(w);
-			vo.setWarrantyYears(list.getWarranty() + list.getWarrantyUnit());
+
+			vo.setWarranty(list.getWarranty() + list.getWarrantyUnit());
 
 			volist.add(vo);
 		}

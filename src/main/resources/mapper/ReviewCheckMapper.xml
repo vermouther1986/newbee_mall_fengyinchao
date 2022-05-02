@@ -2,15 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="ltd.newbee.mail.newbeemail.dao.ReviewCheckMapper">
-	<insert id="insertReviewApiCheck">
-		insert into Review_api_check(goods_id,user_id,order_id)
+	<insert id="insertReviewApiCheck" parameterType="map">
+		insert into
+		review(review_id,
+		order_id,
+		nick_name,
+		rating,
+		title,
+		content,
+		review_date)
 		values
-		<foreach item="item" collection="list" separator=",">
-			(#{item.goodsId},#{item.userId}, #{item.orderId})
-		</foreach>
+
+		(#{reviewId},
+		#{orderId},
+		#{nickName},
+		#{rating},
+		#{title},
+		#{content},
+		#{reviewDate})
+
 	</insert>
 	<select id="getReviewCheck"
-		resultType="ltd.newbee.mail.newbeemail.entity.ReviewApiCheck">
+		resultType="ltd.newbee.mail.newbeemail.entity.Review">
 		SELECT rev.order_id,item.goods_id,ord.user_id FROM
 		newbee_mall_db.tb_newbee_mall_order_item as item left join review as
 		rev on rev.order_id=item .order_id and rev.goods_id=item.goods_id left
@@ -19,5 +32,12 @@
 		rev.order_id is null and
 		item.goods_id
 		=#{goodsId} and user_id=#{userId}
+	</select>
+	<select id="insertNewReviewId"
+		resultType="ltd.newbee.mail.newbeemail.entity.Review">
+
+
+		SELECT max(review_id) from review
+
 	</select>
 </mapper>

@@ -2,15 +2,20 @@ package ltd.newbee.mail.newbeemail.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.hutool.core.bean.BeanUtil;
 import ltd.newbee.mail.newbeemail.dao.RunRecommendApiHistoryMapper;
+import ltd.newbee.mail.newbeemail.entity.Review;
 import ltd.newbee.mail.newbeemail.entity.ReviewApiCheck;
 import ltd.newbee.mail.newbeemail.entity.RunRecommendApiHistory;
 import ltd.newbee.mail.newbeemail.service.AllGoodsInformationService;
@@ -48,17 +53,17 @@ public class IndexController {
 	@Resource
 	private RunRecommendApiHistoryService runRecommendApiHistoryService;
 	@Resource
-	private ProductFormulaService  productFormulaService;
+	private ProductFormulaService productFormulaService;
 	@Resource
-	private GoodsImageService  goodsImageService;
+	private GoodsImageService goodsImageService;
 	@Resource
-	private AllGoodsInformationService  allGoodsInformationService;
+	private AllGoodsInformationService allGoodsInformationService;
 	@Resource
 	private QuestionsAndAnswerService questionsAndAnswerService;
 	@Resource
-	private ReviewMapperService  reviewMapperService ;
+	private ReviewMapperService reviewMapperService;
 	@Resource
-	private ReviewCheckService reviewCheckService ;
+	private ReviewCheckService reviewCheckService;
 
 	@GetMapping("/goodses")
 	@ResponseBody
@@ -96,16 +101,17 @@ public class IndexController {
 		}
 
 	}
+
 	@GetMapping("/recomend")
 	@ResponseBody
 	public Result recomend() {
-		List<RunRecommendApiHistory> list= runRecommendApiHistoryService.getCategoryId();
-		for(RunRecommendApiHistory run: list) {
+		List<RunRecommendApiHistory> list = runRecommendApiHistoryService.getCategoryId();
+		for (RunRecommendApiHistory run : list) {
 			run.setRunDate(new Date());
-			
+
 		}
 		int count = runRecommendApiHistoryService.insertRecommendApiHistory(list);
-	
+
 		if (count == 0) {
 
 			return ResultGenerator.genFailResult("failed");
@@ -123,44 +129,65 @@ public class IndexController {
 
 		return ResultGenerator.genSuccessResult(productFormulaService.getProductFormulaForIndex(goodsId));
 	}
+
 	@GetMapping("/goodsimage")
 	@ResponseBody
 	public Result goodsimage(long goodsId) {
 
 		return ResultGenerator.genSuccessResult(goodsImageService.getGoodsImage(goodsId));
 	}
+
 	@GetMapping("/allgoods")
 	@ResponseBody
 	public Result allgoods(long goodsId) {
 
 		return ResultGenerator.genSuccessResult(allGoodsInformationService.getAllGoodsInformationForIndex(goodsId));
 	}
+
 	@GetMapping("/question")
 	@ResponseBody
-	public Result question(long goodsId,int page,int number,String orderBy ) {
-		
-		return ResultGenerator.genSuccessResult(questionsAndAnswerService.getQuestionsAndAnswerForIndex(goodsId,page,3,orderBy ));
+	public Result question(long goodsId, int page, int number, String orderBy) {
+
+		return ResultGenerator
+				.genSuccessResult(questionsAndAnswerService.getQuestionsAndAnswerForIndex(goodsId, page, 3, orderBy));
 	}
+
 	@GetMapping("/review")
 	@ResponseBody
-	public Result review(int goodsId) {
-		
-		return ResultGenerator.genSuccessResult(reviewMapperService.getReviewForIndex(goodsId));
+	public Result review(int goodsId, int rating, int start, int number) {
+
+		return ResultGenerator.genSuccessResult(reviewMapperService.getReviewForIndex(goodsId, rating, start, number));
 	}
-	@GetMapping("/reviewcheck")
+
 	@ResponseBody
-	public Result reviewcheck(long goodsId,long userId) {
-	List<ReviewApiCheck> list=reviewCheckService.getReviewCheck(goodsId, userId);
-		long count=reviewCheckService.insertReviewApiCheck(list);
-		if(count==0) {
-			return ResultGenerator.genFailResult("noreview");
+	public Result reviewcheck(int goodsId, int userId) {
+		List<Review> entityList = new ArrayList<Review>();
+		entityList = reviewCheckService.getReviewCheck(goodsId, userId);
+		List<Review> insertlist = new ArrayList<Review>();
+		
+		Review relist = new Review();
+
+		if (entityList.size() == 0) {
+			return ResultGenerator.genFailResult("can't review");
+
+		} else {
+			for (Review entity : entityList) {
+				BeanUtil.copyProperties(entity, relist);
 			
-		}else {
+			}
+			insertlist.add(relist);
 			
-			return ResultGenerator.genSuccessResult("可以写评语");
-			
+			return ResultGenerator
+					.genSuccessResult(reviewCheckService.insertReviewApiCheck(insertlist));
 		}
-		
-		
+
 	}
+
+	@PostMapping("/goods/detail/review")
+	@ResponseBody
+	public Result review(@RequestBody HashMap<String, Object> reviewMap) {
+		System.out.println(reviewMap);
+		return ResultGenerator.genSuccessResult(reviewCheckService.insertReviewApiCheck(reviewMap));
+	}
+
 }
