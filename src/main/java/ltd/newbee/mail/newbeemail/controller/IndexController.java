@@ -166,7 +166,7 @@ public class IndexController {
 		List<Review> insertlist = new ArrayList<Review>();
 		
 		Review relist = new Review();
-
+//修改文件
 		if (entityList.size() == 0) {
 			return ResultGenerator.genFailResult("can't review");
 
