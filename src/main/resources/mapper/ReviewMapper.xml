@@ -21,9 +21,6 @@
 		DESC,countreview desc
 		limit #{start},#{number}
 
-
-
-
 	</select>
 
 

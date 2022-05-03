@@ -2,26 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="ltd.newbee.mail.newbeemail.dao.ReviewCheckMapper">
-	<insert id="insertReview" parameterType="map">
-		insert into
-		review(review_id,
-		order_id,
-		nick_name,
-		rating,
-		title,
-		content,
-		review_date)
+	<insert id="insertReview">
+		insert into review
+		(review_id,order_id,goods_id,nick_name,
+		rating,title,content,photo1,photo2,photo3,photo4,photo5,review_date)
 		values
+		(#{reviewId},#{orderId}, #{goodsId}, #{nickName}
+		, #{rating},
+		#{title}, #{content}, #{photo1}
+		, #{photo2}, #{photo3},
+		#{photo4},#{photo5},#{reviewDate})
 
-		(#{reviewId},
-		#{orderId},
-		#{nickName},
-		#{rating},
-		#{title},
-		#{content},
-		#{reviewDate})
 
 	</insert>
+
 	<select id="getReviewCheck"
 		resultType="ltd.newbee.mail.newbeemail.entity.Review">
 		SELECT rev.order_id,item.goods_id,ord.user_id FROM
@@ -34,10 +28,33 @@
 		=#{goodsId} and user_id=#{userId}
 	</select>
 	<select id="insertNewReviewId"
-		resultType="ltd.newbee.mail.newbeemail.entity.Review">
+		resultType="long">
 
 
 		SELECT max(review_id) from review
 
 	</select>
+	<select id="getRatingCount" resultType="ltd.newbee.mail.newbeemail.entity.Review">
+
+		SELECT rating
+		,count(rating) as count_rating from
+		review where goods_id=#{goodsId}
+		and proved=0
+		group by rating order by
+		rating desc
+
+
+	</select>
+
+	<select id="getAllRatingAndAllReviewAndAvgRating"
+		resultType="ltd.newbee.mail.newbeemail.entity.Review">
+		SELECT count(*) as allReview,avg(rating)as
+		avgRating,count(rating) as allRating
+		FROM newbee_mall_db.review where
+		goods_id=#{goodsId} and proved=0 and title is not null
+
+	</select>
+
+
+
 </mapper>

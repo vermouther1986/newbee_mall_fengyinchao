@@ -6,11 +6,14 @@ import java.util.Map;
 import ltd.newbee.mail.newbeemail.entity.Review;
 
 public interface ReviewCheckMapper {
-	int insertReview(List<Review> list);
+
 
 	int insertReview(Map<String, Object> review);
 
 	List<Review> getReviewCheck(long goodsId, long userId);
-
-	int insertNewReviewId();
+	int getRatingCount(Map<String, Object> review);
+	int  getAllRatingAndAllReviewAndAvgRating(Map<String, Object> review);
+	long insertNewReviewId();
+	List<Review>getRatingCount(long goodsId);
+	List<Review> getAllRatingAndAllReviewAndAvgRating(long goodsId);
 }
