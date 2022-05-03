@@ -6,8 +6,15 @@ import javax.annotation.Generated;
 public class Review {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.270535+09:00", comments="Source field: review.review_id")
     private Long reviewId;
+    private Integer countReview;
+    public Integer getCountReview() {
+		return countReview;
+	}
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.278343+09:00", comments="Source field: review.order_id")
+	public void setCountReview(Integer countReview) {
+		this.countReview = countReview;
+	}
+	@Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.278343+09:00", comments="Source field: review.order_id")
     private Long orderId;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.278524+09:00", comments="Source field: review.nick_name")

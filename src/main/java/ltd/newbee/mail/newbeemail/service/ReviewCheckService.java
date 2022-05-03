@@ -8,8 +8,8 @@ import ltd.newbee.mail.newbeemail.entity.Review;
 
 
 public interface ReviewCheckService {
-	int insertReviewApiCheck(List<Review> list);
-	int insertReviewApiCheck(Map<String,Object>review);
+	int insertReview(List<Review> list);
+	int insertReview(Map<String,Object>review);
 	List<Review> getReviewCheck(long goodsId,long userId);
 	
 	

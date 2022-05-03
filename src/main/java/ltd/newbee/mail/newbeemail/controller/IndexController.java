@@ -178,7 +178,7 @@ public class IndexController {
 			insertlist.add(relist);
 			
 			return ResultGenerator
-					.genSuccessResult(reviewCheckService.insertReviewApiCheck(insertlist));
+					.genSuccessResult(reviewCheckService.insertReview(insertlist));
 		}
 
 	}
@@ -187,7 +187,7 @@ public class IndexController {
 	@ResponseBody
 	public Result review(@RequestBody HashMap<String, Object> reviewMap) {
 		System.out.println(reviewMap);
-		return ResultGenerator.genSuccessResult(reviewCheckService.insertReviewApiCheck(reviewMap));
+		return ResultGenerator.genSuccessResult(reviewCheckService.insertReview(reviewMap));
 	}
 
 }

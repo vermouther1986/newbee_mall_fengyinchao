@@ -21,13 +21,13 @@ public class ReviewCheckServicempl implements ReviewCheckService {
 	ReviewCheckMapper reviewCheckMapper;
 
 	@Override
-	public int insertReviewApiCheck(Map<String, Object> review) {
+	public int insertReview(Map<String, Object> review) {
 		// TODO Auto-generated method stub
 		long newReviewId = reviewCheckMapper.insertNewReviewId() + 1;
 		review.replace("reviewId", newReviewId);
 		review.replace("reviewDate", new Date());
 
-		return reviewCheckMapper.insertReviewApiCheck(review);
+		return reviewCheckMapper.insertReview(review);
 	}
 
 	@Override
@@ -37,9 +37,9 @@ public class ReviewCheckServicempl implements ReviewCheckService {
 	}
 
 	@Override
-	public int insertReviewApiCheck(List<Review> list) {
+	public int insertReview(List<Review> list) {
 		// TODO Auto-generated method stub
-		return reviewCheckMapper.insertReviewApiCheck(list);
+		return reviewCheckMapper.insertReview(list);
 	}
 
 }

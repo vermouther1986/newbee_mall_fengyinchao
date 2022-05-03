@@ -4,7 +4,15 @@ import java.util.Date;
 import javax.annotation.Generated;
 
 public class ReviewVO {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.270535+09:00", comments="Source field: review.review_id")
+	private Integer countReview;
+    public Integer getCountReview() {
+		return countReview;
+	}
+
+	public void setCountReview(Integer countReview) {
+		this.countReview = countReview;
+	}
+	@Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.270535+09:00", comments="Source field: review.review_id")
     private Long reviewId;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.278343+09:00", comments="Source field: review.order_id")
