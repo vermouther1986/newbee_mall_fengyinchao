@@ -3,6 +3,7 @@ package ltd.newbee.mail.newbeemail.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.hutool.core.bean.BeanUtil;
 import ltd.newbee.mail.newbeemail.dao.RunRecommendApiHistoryMapper;
 import ltd.newbee.mail.newbeemail.entity.Review;
-import ltd.newbee.mail.newbeemail.entity.ReviewApiCheck;
+
 import ltd.newbee.mail.newbeemail.entity.RunRecommendApiHistory;
 import ltd.newbee.mail.newbeemail.service.AllGoodsInformationService;
 import ltd.newbee.mail.newbeemail.service.CheckUserExistsService;
@@ -159,35 +160,52 @@ public class IndexController {
 		return ResultGenerator.genSuccessResult(reviewMapperService.getReviewForIndex(goodsId, rating, start, number));
 	}
 
+	@GetMapping("/reviewcheck")
 	@ResponseBody
 	public Result reviewcheck(int goodsId, int userId) {
 		List<Review> entityList = new ArrayList<Review>();
 		entityList = reviewCheckService.getReviewCheck(goodsId, userId);
-		List<Review> insertlist = new ArrayList<Review>();
-		
-		Review relist = new Review();
 
+//修改文件
 		if (entityList.size() == 0) {
 			return ResultGenerator.genFailResult("can't review");
 
 		} else {
-			for (Review entity : entityList) {
-				BeanUtil.copyProperties(entity, relist);
-			
-			}
-			insertlist.add(relist);
-			
-			return ResultGenerator
-					.genSuccessResult(reviewCheckService.insertReviewApiCheck(insertlist));
+
+			return ResultGenerator.genSuccessResult("you can write review");
+
 		}
 
 	}
 
-	@PostMapping("/goods/detail/review")
+	@PostMapping("/goods/review")
 	@ResponseBody
 	public Result review(@RequestBody HashMap<String, Object> reviewMap) {
-		System.out.println(reviewMap);
-		return ResultGenerator.genSuccessResult(reviewCheckService.insertReviewApiCheck(reviewMap));
+		String userid = reviewMap.get("userId").toString();
+		String goodsid = reviewMap.get("goodsId").toString();
+		long userId = Long.parseLong(userid);
+		long goodsId = Long.parseLong(goodsid);
+		List<Review> entityList = new ArrayList<Review>();
+		entityList = reviewCheckService.getReviewCheck(goodsId, userId);
+		if (entityList.size() == 0) {
+			return ResultGenerator.genFailResult("can't review");
+
+		} else {
+
+			System.out.println(reviewMap);
+			return ResultGenerator.genSuccessResult(reviewCheckService.insertReview(reviewMap));
+		}
+
 	}
+
+	@GetMapping("/ratingavgandcount")
+	@ResponseBody
+	public Result ratingcount(long goodsId) {
+
+		return ResultGenerator.genSuccessResult(reviewCheckService.getAllRatingAndAllReviewAndAvgRatingForIndex(goodsId));
+	}
+
+	
+	
 
 }

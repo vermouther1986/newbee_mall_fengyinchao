@@ -6,8 +6,52 @@ import javax.annotation.Generated;
 public class Review {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.270535+09:00", comments="Source field: review.review_id")
     private Long reviewId;
+    private Integer countReview;
+    private Double avgRating;         
+    private Integer allRating;
+    private Integer countRating; 
+    private Integer allReview;
+    public Integer getAllReview() {
+		return allReview;
+	}
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.278343+09:00", comments="Source field: review.order_id")
+	public void setAllReview(Integer allReview) {
+		this.allReview = allReview;
+	}
+	
+    
+    public Double getAvgRating() {
+		return avgRating;
+	}
+
+	public void setAvgRating(Double avgRating) {
+		this.avgRating = avgRating;
+	}
+
+	public Integer getAllRating() {
+		return allRating;
+	}
+
+	public void setAllRating(Integer allRating) {
+		this.allRating = allRating;
+	}
+
+	public Integer getCountRating() {
+		return countRating;
+	}
+
+	public void setCountRating(Integer countRating) {
+		this.countRating = countRating;
+	}
+
+	public Integer getCountReview() {
+		return countReview;
+	}
+
+	public void setCountReview(Integer countReview) {
+		this.countReview = countReview;
+	}
+	@Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.278343+09:00", comments="Source field: review.order_id")
     private Long orderId;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.278524+09:00", comments="Source field: review.nick_name")
