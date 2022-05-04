@@ -11,11 +11,12 @@ import ltd.newbee.mail.newbeemail.vo.ReviewAvgAndCountVO;
 
 
 public interface ReviewCheckService {
-	
+	//插入表
 	int insertReview(Map<String,Object>review);
-	List<Review> getReviewCheck(long goodsId,long userId);
-
 	
-	List<ReviewAvgAndCountVO> getAllRatingAndAllReviewAndAvgRatingForIndex(long goodsId);
+	List<Review> getReviewCheck(long goodsId,long userId);
+	
+	
+	List<ReviewAvgAndCountVO> getReviewCounterForIndex(long goodsId);
 }
 

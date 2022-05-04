@@ -7,13 +7,11 @@ import ltd.newbee.mail.newbeemail.entity.Review;
 
 public interface ReviewCheckMapper {
 
-
+    //插入表
 	int insertReview(Map<String, Object> review);
-
 	List<Review> getReviewCheck(long goodsId, long userId);
-	int getRatingCount(Map<String, Object> review);
-	int  getAllRatingAndAllReviewAndAvgRating(Map<String, Object> review);
+	//采番
 	long insertNewReviewId();
-	List<Review>getRatingCount(long goodsId);
+	List<Review> getRatingCount(long goodsId);
 	List<Review> getAllRatingAndAllReviewAndAvgRating(long goodsId);
 }

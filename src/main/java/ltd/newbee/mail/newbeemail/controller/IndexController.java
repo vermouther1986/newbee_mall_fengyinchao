@@ -160,51 +160,9 @@ public class IndexController {
 		return ResultGenerator.genSuccessResult(reviewMapperService.getReviewForIndex(goodsId, rating, start, number));
 	}
 
-	@GetMapping("/reviewcheck")
-	@ResponseBody
-	public Result reviewcheck(int goodsId, int userId) {
-		List<Review> entityList = new ArrayList<Review>();
-		entityList = reviewCheckService.getReviewCheck(goodsId, userId);
 
-//修改文件
-		if (entityList.size() == 0) {
-			return ResultGenerator.genFailResult("can't review");
-
-		} else {
-
-			return ResultGenerator.genSuccessResult("you can write review");
-
-		}
-
-	}
-
-	@PostMapping("/goods/review")
-	@ResponseBody
-	public Result review(@RequestBody HashMap<String, Object> reviewMap) {
-		String userid = reviewMap.get("userId").toString();
-		String goodsid = reviewMap.get("goodsId").toString();
-		long userId = Long.parseLong(userid);
-		long goodsId = Long.parseLong(goodsid);
-		List<Review> entityList = new ArrayList<Review>();
-		entityList = reviewCheckService.getReviewCheck(goodsId, userId);
-		if (entityList.size() == 0) {
-			return ResultGenerator.genFailResult("can't review");
-
-		} else {
-
-			System.out.println(reviewMap);
-			return ResultGenerator.genSuccessResult(reviewCheckService.insertReview(reviewMap));
-		}
-
-	}
-
-	@GetMapping("/ratingavgandcount")
-	@ResponseBody
-	public Result ratingcount(long goodsId) {
-
-		return ResultGenerator.genSuccessResult(reviewCheckService.getAllRatingAndAllReviewAndAvgRatingForIndex(goodsId));
-	}
-
+	
+	
 	
 	
 

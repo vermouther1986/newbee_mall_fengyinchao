@@ -24,9 +24,9 @@ public class ReviewCheckServicempl implements ReviewCheckService {
 	ReviewCheckMapper reviewCheckMapper;
 
 	@Override
-	// 采番
+
 	public int insertReview(Map<String, Object> review) {
-		// TODO Auto-generated method stub
+		// 采番
 		long newReviewId = reviewCheckMapper.insertNewReviewId() + 1;
 		review.replace("reviewId", newReviewId);
 		review.replace("reviewDate", new Date());
@@ -35,32 +35,25 @@ public class ReviewCheckServicempl implements ReviewCheckService {
 	}
 
 	@Override
-	public List<Review> getReviewCheck(long goodsId, long userId) {
-
-		return reviewCheckMapper.getReviewCheck(goodsId, userId);
-	}
-
-	@Override
-	public List<ReviewAvgAndCountVO> getAllRatingAndAllReviewAndAvgRatingForIndex(long goodsId) {
+	public List<ReviewAvgAndCountVO> getReviewCounterForIndex(long goodsId) {
 		List<Review> entitylist = reviewCheckMapper.getAllRatingAndAllReviewAndAvgRating(goodsId);
 		List<Review> ratinglist = reviewCheckMapper.getRatingCount(goodsId);
-		List<ReviewAvgAndCountVO> volist = new ArrayList<ReviewAvgAndCountVO>();
-		List<RatingCountVO> ratvolist = new ArrayList<RatingCountVO>();
 		ReviewAvgAndCountVO vo = new ReviewAvgAndCountVO();
-		for (Review entity : entitylist) {
-
-			BeanUtil.copyProperties(entity, vo);
-
-		}
+		List<ReviewAvgAndCountVO> volist = BeanUtil.copyToList(entitylist, ReviewAvgAndCountVO.class);
+		List<RatingCountVO> relist=BeanUtil.copyToList(ratinglist, RatingCountVO.class);
+		vo.setRatingCount(relist);
 		volist.add(vo);
-		for (Review rating : ratinglist) {
-			RatingCountVO rvo = new RatingCountVO();
-			BeanUtil.copyProperties(rating, rvo);
-			ratvolist.add(rvo);
-		}
-		vo.setRatingCount(ratvolist);
 		return volist;
 
 	}
+
+	@Override
+	public List<Review> getReviewCheck(long goodsId, long userId) {
+		// TODO Auto-generated method stub
+		return reviewCheckMapper.getReviewCheck(goodsId,userId);
+	}
+
+	
+
 
 }
