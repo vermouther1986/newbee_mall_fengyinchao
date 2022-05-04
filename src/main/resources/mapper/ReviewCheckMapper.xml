@@ -4,17 +4,92 @@
 	namespace="ltd.newbee.mail.newbeemail.dao.ReviewCheckMapper">
 	<insert id="insertReview">
 		insert into review
-		(review_id,order_id,goods_id,nick_name,
-		rating,title,content,photo1,photo2,photo3,photo4,photo5,review_date)
-		values
-		(#{reviewId},#{orderId}, #{goodsId}, #{nickName}
-		, #{rating},
-		#{title}, #{content}, #{photo1}
-		, #{photo2}, #{photo3},
-		#{photo4},#{photo5},#{reviewDate})
-
-
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="reviewId != null">
+				review_id,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="goodsId != null">
+				goods_id,
+			</if>
+			<if test="nickName != null">
+				nick_name,
+			</if>
+			<if test="rating != null">
+				rating,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="photo1 != null">
+				photo1,
+			</if>
+			<if test="photo2 != null">
+				photo2,
+			</if>
+			<if test="photo3 != null">
+				photo3,
+			</if>
+			<if test="photo4 != null">
+				photo4,
+			</if>
+			<if test="photo5 != null">
+				photo5,
+			</if>
+			<if test="reviewDate != null">
+				review_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="reviewId != null">
+				#{reviewId},
+			</if>
+			<if test="orderId != null">
+				#{orderId},
+			</if>
+			<if test="goodsId != null">
+				#{goodsId},
+			</if>
+			<if test="nickName != null">
+				#{nickName},
+			</if>
+			<if test="rating != null">
+				#{rating},
+			</if>
+			<if test="title != null">
+				#{title},
+			</if>
+			<if test="content != null">
+				#{content},
+			</if>
+			<if test="photo1 != null">
+				#{photo1},
+			</if>
+			<if test="photo2 != null">
+				#{photo2},
+			</if>
+			<if test="photo3 != null">
+				#{photo3},
+			</if>
+			<if test="photo4 != null">
+				#{photo4},
+			</if>
+			<if test="photo5 != null">
+				#{photo5},
+			</if>
+			<if test="reviewDate != null">
+				#{reviewDate},
+			</if>
+		</trim>
 	</insert>
+
+
+
 
 	<select id="getReviewCheck"
 		resultType="ltd.newbee.mail.newbeemail.entity.Review">
@@ -27,21 +102,32 @@
 		item.goods_id
 		=#{goodsId} and user_id=#{userId}
 	</select>
-	<select id="insertNewReviewId"
-		resultType="long">
+	<select id="insertNewReviewId" resultType="long">
 
 
-		SELECT max(review_id) from review
+		SELECT max(review_id)
+		from review
 
 	</select>
-	<select id="getRatingCount" resultType="ltd.newbee.mail.newbeemail.entity.Review">
-
-		SELECT rating
-		,count(rating) as count_rating from
-		review where goods_id=#{goodsId}
-		and proved=0
-		group by rating order by
-		rating desc
+	<select id="getRatingCount"
+		resultType="ltd.newbee.mail.newbeemail.entity.Review">
+		select distinct
+		(SElECT COUNT(rating) FROM review WHERE
+		rating=5 AND goods_id=#{goodsId}) AS
+		rating5,
+		(SElECT COUNT(rating) FROM
+		review WHERE rating=4 AND goods_id=#{goodsId}) AS
+		rating4,
+		(SElECT
+		COUNT(rating) FROM review WHERE rating=3 AND goods_id=#{goodsId}) AS
+		rating3,
+		(SElECT COUNT(rating) FROM review WHERE rating=2 AND
+		goods_id=#{goodsId}) AS
+		rating2,
+		(SElECT COUNT(rating) FROM review WHERE
+		rating=1 AND goods_id=#{goodsId}) AS
+		rating1
+		FROM review;
 
 
 	</select>

@@ -6,7 +6,55 @@ import javax.annotation.Generated;
 public class Review {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2022-04-28T19:05:50.270535+09:00", comments="Source field: review.review_id")
     private Long reviewId;
-    private Integer countReview;
+    private Integer rating1;
+
+	private Integer rating2;
+
+	private Integer rating3;
+
+	private Integer rating4;
+
+	private Integer rating5;
+    public Integer getRating1() {
+		return rating1;
+	}
+
+	public void setRating1(Integer rating1) {
+		this.rating1 = rating1;
+	}
+
+	public Integer getRating2() {
+		return rating2;
+	}
+
+	public void setRating2(Integer rating2) {
+		this.rating2 = rating2;
+	}
+
+	public Integer getRating3() {
+		return rating3;
+	}
+
+	public void setRating3(Integer rating3) {
+		this.rating3 = rating3;
+	}
+
+	public Integer getRating4() {
+		return rating4;
+	}
+
+	public void setRating4(Integer rating4) {
+		this.rating4 = rating4;
+	}
+
+	public Integer getRating5() {
+		return rating5;
+	}
+
+	public void setRating5(Integer rating5) {
+		this.rating5 = rating5;
+	}
+	private Integer countReview;
     private Double avgRating;         
     private Integer allRating;
     private Integer countRating; 
