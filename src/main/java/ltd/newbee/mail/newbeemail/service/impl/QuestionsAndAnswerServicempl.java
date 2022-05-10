@@ -2,7 +2,6 @@ package ltd.newbee.mail.newbeemail.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -51,18 +50,6 @@ public class QuestionsAndAnswerServicempl implements QuestionsAndAnswerService {
 	
 		
 		return volist;
-	}
-//qa点赞
-	@Override
-	public int getQuestionsLike(long answerId, long userId) {
-		
-		return questionsAndAnswerMapper.getQuestionsLike(answerId, userId);
-	}
-
-	@Override
-	public int insertQuestionsLike(Map<String, Object> QaLike) {
-		
-		return questionsAndAnswerMapper.insertQuestionsLike(QaLike);
 	}
 
 }
