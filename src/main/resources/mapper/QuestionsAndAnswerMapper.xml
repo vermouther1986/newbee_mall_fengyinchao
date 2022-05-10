@@ -26,7 +26,7 @@
 		limit
 		#{page},#{number}
 
-	<!--QA总数 -->
+
 	</select>
 	<select id="getQuestionsTotol" resultType="int">
 
@@ -39,23 +39,7 @@
 		ans.question_id where que.goods_id = #{goodsId} and proved=0
 
 
-<!--QAlike检查 -->
-	</select>
-	<select id="getQuestionsLike" resultType="int">
 
-		SELECT COUNT(*)
-		FROM
-		qa_like
-		WHERE answer_id=#{answerId} AND user_id=#{userId}
-
-
-<!--QAlike插入表 -->
 	</select>
 
-	<insert id="insertQuestionsLike">
-		insert into qa_like
-		(answer_id,user_id,like_date)
-		values
-		(#{answerId},#{userId},#{likeDate})
-	</insert>
 </mapper>
